@@ -1,0 +1,76 @@
+﻿<table>
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                AnnualSalary
+            </th>
+            <th>
+                DateOfBirth
+            </th>
+            <th>
+                Index
+            </th>
+            <th>
+                isFirst
+            </th>
+            <th>
+                isLast
+            </th>
+            <th>
+                isOdd
+            </th>
+            <th>
+                isEven
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let employee of employees;trackBy:trackByEmpCode;let i=index;let isFirst=first;let isLast=last; let isOdd=odd; let isEven = even">
+            <td >
+                {{employee.code | uppercase}}
+            </td>
+            <td>
+                {{employee.name | employeedetailpipe:employee.gender}}
+            </td>
+            <td>
+                {{employee.gender}}
+            </td>
+            <td>
+                {{employee.annualsalary | currency:'INR':true}}
+            </td>
+            <td>
+                {{employee.dateofbirth | date:'dd/MM/y' | uppercase}}
+            </td>
+            <td>
+                {{i}}
+            </td>
+            <td>
+                {{isFirst}}
+            </td>
+            <td>
+                {{isLast}}
+            </td>
+            <td>
+                {{isOdd}}
+            </td>
+            <td>
+                {{isEven}}
+            </td>
+        </tr>
+        <tr *ngIf="!employees || employees==0">
+            <td colspan="5">
+                No data available
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="getEmployees()">Refresh Employees</button>
